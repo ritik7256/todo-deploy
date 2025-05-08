@@ -11,7 +11,11 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 
 app.use('/api/todos', todoRoutes);
-
+app.get("/", (req, res) => {
+    res.status(201).json({
+        message: "i ma aut jksb fkd"
+    })
+})
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
