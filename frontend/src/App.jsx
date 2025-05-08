@@ -7,7 +7,9 @@ const App = () => {
   const [input, setInput] = useState("");
 
   const fetchTodos = async () => {
-    const res = await axios.get("http://localhost:5000/api/todos");
+    const res = await axios.get(
+      "https://todo-deploy-p5bm.onrender.com/api/todos"
+    );
     setTodos(res.data);
   };
 
@@ -17,20 +19,25 @@ const App = () => {
 
   const addTodo = async () => {
     if (!input) return;
-    const res = await axios.post("http://localhost:5000/api/todos", {
-      title: input,
-    });
+    const res = await axios.post(
+      "https://todo-deploy-p5bm.onrender.com/api/todos",
+      {
+        title: input,
+      }
+    );
     setTodos([...todos, res.data]);
     setInput("");
   };
 
   const toggleComplete = async (id) => {
-    const res = await axios.put(`http://localhost:5000/api/todos/${id}`);
+    const res = await axios.put(
+      `https://todo-deploy-p5bm.onrender.com/todos/${id}`
+    );
     setTodos(todos.map((todo) => (todo._id === id ? res.data : todo)));
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:5000/api/todos/${id}`);
+    await axios.delete(`https://todo-deploy-p5bm.onrender.com/api/todos/${id}`);
     setTodos(todos.filter((todo) => todo._id !== id));
   };
 
